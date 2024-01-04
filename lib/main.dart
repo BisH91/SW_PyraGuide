@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_homsa/cubit/app_cubit_logics.dart';
+import 'package:test_homsa/cubit/app_cubits.dart';
 import 'package:test_homsa/pages/detail_page.dart';
 import 'package:test_homsa/pages/home_page.dart';
 import 'package:test_homsa/pages/navpages/main_page.dart';
 import 'package:test_homsa/pages/navpages/signup.dart';
 import 'package:test_homsa/pages/welcome_page.dart';
+import 'package:test_homsa/services/data_services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,6 +25,11 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: WelcomePagee());
+        home: BlocProvider<AppCubits>(
+          create: (context) => AppCubits(
+            data: DataServices(),
+          ),
+          child: AppCubitLogics(),
+        ));
   }
 }

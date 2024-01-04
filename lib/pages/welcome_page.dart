@@ -1,5 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_homsa/cubit/app_cubits.dart';
 import 'package:test_homsa/widgets/app_large_text.dart';
 import 'package:test_homsa/widgets/app_text.dart';
 import 'package:test_homsa/misc/colors.dart';
@@ -58,8 +60,20 @@ class _WelcomePageeState extends State<WelcomePagee> {
                             SizedBox(
                               height: 40,
                             ),
-                            ResponsiveButton(
-                              width: 120,
+                            GestureDetector(
+                              onTap: () {
+                                BlocProvider.of<AppCubits>(context).getData();
+                              },
+                              child: Container(
+                                width: 200,
+                                child: Row(
+                                  children: [
+                                    ResponsiveButton(
+                                      width: 120,
+                                    ),
+                                  ],
+                                ),
+                              ),
                             )
                           ],
                         ),
